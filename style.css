@@ -356,3 +356,10 @@ form input, form select, form label {
   padding: 1rem;
   text-align: center;
 }
+
+/* GAME SPREADSHEET */
+ 
+.gameSpreadsheet iframe {
+  width: 60vw;
+  height: 80vh;
+}

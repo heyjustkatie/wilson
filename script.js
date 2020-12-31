@@ -240,6 +240,7 @@ function filterGames(searchedGames) {
     var gameType = searchedGames[i].Type;
     var gameMinPlayers = searchedGames[i].Min;
     var gameMaxPlayers = searchedGames[i].Max;
+    var gameNotes = searchedGames[i].Notes;
     if (searchGameTypes.includes(gameType)) return true;
     if (searchPlayerValue >= gameMinPlayers) {
       if (searchPlayerValue <= gameMaxPlayers) {
@@ -247,14 +248,17 @@ function filterGames(searchedGames) {
         let gameNameEle = document.createElement('h3');
         let gameTypeEle = document.createElement('p');
         let gamePlayersEle = document.createElement('p');
+        let gameNotesEle = document.createElement('p');
         resultsContainer.appendChild(gameEle);
         gameEle.setAttribute('class', 'gameItem');
         gameEle.appendChild(gameNameEle);
         gameEle.appendChild(gameTypeEle);
         gameEle.appendChild(gamePlayersEle);
+        gameEle.appendChild(gameNotesEle);
         gameNameEle.innerHTML = gameName;
         gameTypeEle.innerHTML = gameType;
         gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
+        gameNotesEle.innerHTML = gameNotes;
       }
     }
     else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
@@ -347,18 +351,22 @@ function showRandom(gamesRandom) {
   let gameType = gamesRandom[randomIndex].Type;
   let gameMinPlayers = gamesRandom[randomIndex].Min;
   let gameMaxPlayers = gamesRandom[randomIndex].Max;
+  let gameNotes = gamesRandom[randomIndex].Notes;
   let gameEle = document.createElement('div');
   let gameNameEle = document.createElement('h3');
   let gameTypeEle = document.createElement('p');
   let gamePlayersEle = document.createElement('p');
+  let gameNotesEle = document.createElement('p');
   randomContainer.appendChild(gameEle);
   gameEle.setAttribute('class', 'gameItem');
   gameEle.appendChild(gameNameEle);
   gameEle.appendChild(gameTypeEle);
   gameEle.appendChild(gamePlayersEle);
+  gameEle.appendChild(gameNotesEle);
   gameNameEle.innerHTML = gameName;
   gameTypeEle.innerHTML = gameType;
   gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
+  gameNotesEle.innerHTML = gameNotes;
 };
 
 // SEE ALL GAMES
@@ -391,18 +399,22 @@ function showGames(gamesAll) {
     let gameType = gamesAll[i].Type;
     let gameMinPlayers = gamesAll[i].Min;
     let gameMaxPlayers = gamesAll[i].Max;
+    let gameNotes = gamesAll[i].Notes;
     let gameEle = document.createElement('div');
     let gameNameEle = document.createElement('h3');
     let gameTypeEle = document.createElement('p');
     let gamePlayersEle = document.createElement('p');
+    let gameNotesEle = document.createElement('p');
     allGamesContainer.appendChild(gameEle);
     gameEle.setAttribute('class', 'gameItem');
     gameEle.appendChild(gameNameEle);
     gameEle.appendChild(gameTypeEle);
     gameEle.appendChild(gamePlayersEle);
+    gameEle.appendChild(gameNotesEle);
     gameNameEle.innerHTML = gameName;
     gameTypeEle.innerHTML = gameType;
     gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
+    gameNotesEle.innerHTML = gameNotes;
   }
 };
 
