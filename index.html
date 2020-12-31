@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Wilson Family</title>
+  </head>
+  <body class="wilson">
+    <header class="wilsonHeader">
+      <div class="siteInfo">
+        <div class="siteLogo">
+          <img src="images/tree.svg" alt="Tree" width="100px" />
+        </div>
+        <div class="siteTitle">
+          <h1 id="siteTitle"><a href="#">Wilson Family</a></h1>
+        </div>
+      </div>
+    </header>
+    <main class="wilsonBody">
+      <nav class="wilsonNav">
+        <ul>
+          <li class="wilsonNavItem" id="navSearch">
+            <a href="#">Search Games</a>
+          </li>
+          <li class="wilsonNavItem" id="navRandom">
+            <a href="#">Random Game</a>
+          </li>
+          <li class="wilsonNavItem" id="navAll">
+            <a href="#">See All Games</a>
+          </li>
+          <li class="wilsonNavItem" id="navManage">
+            <a href="#">Manage Games</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="wilsonContent" id="contentHome">
+        <h2>Hello, Wilsons! What would you like to do today?</h2>
+        <p>
+          Lorem ipsum dolor, consectetur adipiscing elit. Sed pharetra felis
+          vitae felis euismod interdum. Proin in diam est. Phasellus pulvinar a
+          metus eget ullamcorper.
+        </p>
+      </div>
+      <div class="wilsonContent" id="contentSearch" style="display: none">
+        <h2>Let's play a game!</h2>
+        <p>
+          Lorem ipsum dolor, consectetur adipiscing elit. Sed pharetra felis
+          vitae felis euismod interdum. Proin in diam est. Phasellus pulvinar a
+          metus eget ullamcorper.
+        </p>
+        <div id="searchContainer">
+          <form id="search">
+            <div>
+              <h3>What type of game would you like to play?</h3>
+              <div class="gameTypesContainer">
+                <label for="cardGame"
+                  ><input
+                    name="Card Game"
+                    type="checkbox"
+                    id="cardGame"
+                    class="gameChoice"
+                  />Card Game</label
+                >
+                <label for="boardGame"
+                  ><input
+                    name="Board Game"
+                    type="checkbox"
+                    id="boardGame"
+                    class="gameChoice"
+                  />Board Game</label
+                >
+                <label for="skillGame"
+                  ><input
+                    name="Skill Game"
+                    type="checkbox"
+                    id="skillGame"
+                    class="gameChoice"
+                  />Skill Game</label
+                >
+                <label for="leisure"
+                  ><input
+                    name="Leisure"
+                    type="checkbox"
+                    id="leisure"
+                    class="gameChoice"
+                  />Leisure</label
+                >
+                <label for="drinkingGame"
+                  ><input
+                    name="Drinking Game"
+                    type="checkbox"
+                    id="drinkingGame"
+                    class="gameChoice"
+                  />Drinking Game</label
+                >
+              </div>
+              <h3>For how many people?</h3>
+              <p>
+                <label for="players">Number of Players</label>:
+                <span id="playerNum"></span>
+              </p>
+              <div class="playerNumContainer">
+                <input
+                  type="range"
+                  id="playerSlider"
+                  name="players"
+                  min="1"
+                  max="20"
+                  default="4"
+                />
+              </div>
+            </div>
+            <div class="searchBtnContainer">
+              <div class="btnContainer">
+                <button class="btn" id="searchBtn" input type="submit">
+                  Search
+                </button>
+              </div>
+              <div class="btnContainer">
+                <button class="btn" id="refreshSearchBtn">Refresh</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="gamesContainer" id="resultsContainer"></div>
+      </div>
+      <div class="wilsonContent" id="contentRandom" style="display: none">
+        <h2>Trouble deciding? Here's a random game...</h2>
+        <div class="randomBtnContainer">
+          <div class="btnContainer">
+            <button class="btn" id="randomBtn">New Random Game</button>
+          </div>
+        </div>
+        <div class="gamesContainer" id="randomContainer"></div>
+      </div>
+      <div class="wilsonContent" id="contentAll" style="display: none">
+        <h2>Wow, that's a lot of games!</h2>
+        <p>
+          Lorem ipsum dolor, consectetur adipiscing elit. Sed pharetra felis
+          vitae felis euismod interdum. Proin in diam est. Phasellus pulvinar a
+          metus eget ullamcorper.
+        </p>
+        <div class="btnContainer">
+          <button class="btn" id="refreshAllBtn">Refresh</button>
+        </div>
+        <div class="gamesContainer" id="allGamesContainer"></div>
+      </div>
+      <div class="wilsonContent" id="contentManage" style="display: none">
+        <h2>What would you like to do?</h2>
+        <p>
+          Lorem ipsum dolor, consectetur adipiscing elit. Sed pharetra felis
+          vitae felis euismod interdum. Proin in diam est. Phasellus pulvinar a
+          metus eget ullamcorper.
+        </p>
+        <div class="gameSpreadsheet">
+          <iframe
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRuurrv8zUpU9zTxvRen2qKIqAH-q74G0CpvQinjU5l1JatChENTOPRkFV35jhISJwma_4E7Kza8jvy/pubhtml?gid=0&amp;single=true&amp;widget=false&amp;headers=false"
+          ></iframe>
+        </div>
+        <div class="btnContainer">
+          <button class="btn" id="sheetsBtn">Edit Spreadsheet</button>
+        </div>
+      </div>
+    </main>
+    <button onclick="topFunction()" id="btnTop" class="btn" title="Go to top">
+      Top
+    </button>
+    <script src="papaparse/papaparse.min.js"></script>
+    <script src="papaparse/papaparse.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
