@@ -415,4 +415,4 @@ function sheetsBtnFn() {
   window.location.href='https://docs.google.com/spreadsheets/d/1deyiHAzodAjSE7kh40f4uod2lcM3f4M8bPdSiQy27Qs/edit';
 };
 
-sheetsBtn.addEventListener = ("click", sheetsBtnFn);
+// sheetsBtn.addEventListener = ("click", sheetsBtnFn);
