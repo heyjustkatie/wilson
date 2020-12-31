@@ -143,6 +143,7 @@ function searchGames() {
 
 function searchType() {
   console.log("Confirming game type now");
+  var searchGameTypes = [];
   var checkboxes = document.getElementsByClassName('gameChoice');
   for (var checkbox of checkboxes) {
     if (checkbox.checked) {
@@ -241,24 +242,28 @@ function filterGames(searchedGames) {
     var gameMinPlayers = searchedGames[i].Min;
     var gameMaxPlayers = searchedGames[i].Max;
     var gameNotes = searchedGames[i].Notes;
-    if (searchGameTypes.includes(gameType)) return true;
-    if (searchPlayerValue >= gameMinPlayers) {
-      if (searchPlayerValue <= gameMaxPlayers) {
-        let gameEle = document.createElement('div');
-        let gameNameEle = document.createElement('h3');
-        let gameTypeEle = document.createElement('p');
-        let gamePlayersEle = document.createElement('p');
-        let gameNotesEle = document.createElement('p');
-        resultsContainer.appendChild(gameEle);
-        gameEle.setAttribute('class', 'gameItem');
-        gameEle.appendChild(gameNameEle);
-        gameEle.appendChild(gameTypeEle);
-        gameEle.appendChild(gamePlayersEle);
-        gameEle.appendChild(gameNotesEle);
-        gameNameEle.innerHTML = gameName;
-        gameTypeEle.innerHTML = gameType;
-        gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
-        gameNotesEle.innerHTML = gameNotes;
+    function returnTrue() {
+      if (searchGameTypes.includes(gameType)) return true;
+    };
+    if (returnTrue()) {
+      if (searchPlayerValue >= gameMinPlayers) {
+        if (searchPlayerValue <= gameMaxPlayers) {
+          let gameEle = document.createElement('div');
+          let gameNameEle = document.createElement('h3');
+          let gameTypeEle = document.createElement('p');
+          let gamePlayersEle = document.createElement('p');
+          let gameNotesEle = document.createElement('p');
+          resultsContainer.appendChild(gameEle);
+          gameEle.setAttribute('class', 'gameItem');
+          gameEle.appendChild(gameNameEle);
+          gameEle.appendChild(gameTypeEle);
+          gameEle.appendChild(gamePlayersEle);
+          gameEle.appendChild(gameNotesEle);
+          gameNameEle.innerHTML = gameName;
+          gameTypeEle.innerHTML = gameType;
+          gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
+          gameNotesEle.innerHTML = gameNotes;          
+        }
       }
     }
     else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
