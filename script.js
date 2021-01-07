@@ -201,9 +201,6 @@ function searchResults(gameResults) {
         gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
         gameNotesEle.innerHTML = gameNotes;
       }
-      else if (searchPlayerValue > gameMaxPlayers) {
-        resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
-      }
     }
   };
   console.log("Search complete");
