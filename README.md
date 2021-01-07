@@ -4,3 +4,5 @@ Hi all! This is a personal project I worked on for my sister and her family, who
 I converted their written list to a Google Sheets document that they can edit as needed and then became the database this site runs on. I used [Papa Parse](https://papaparse.com) for the Google Sheets to CSV conversion and looped through the game array to filter search results.
 
 For the CSS, I used a varation of the [Holy Grail flexbox layout](https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/). I also used [SUNY Brockport's official school colors](https://www.brockport.edu/support/web_team/style_guide/colors.html) and comparable fonts since my sister and her husband are both alumni.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0ed5a9cc-7ac6-4ccc-bb44-6700fd3e79ed/deploy-status)](https://app.netlify.com/sites/wilsonfamily/deploys)
