@@ -26,7 +26,7 @@ function parseGames() {
     download: true,
     header: true,
     complete: function (results) {
-      console.log(results.data)
+      // console.log(results.data)
     }
   });
 };
@@ -137,7 +137,6 @@ function searchGames() {
     complete: function (results) {
       var data = results.data
       console.log("Getting games to search now");
-      // searchType();
       filterGames(data)
     }
   })
@@ -156,15 +155,9 @@ function filterGames(gamesToFilter) {
     searchGameTypes.push("Card Game", "Board Game", "Skill Game", "Leisure", "Drinking Game");
   };
   console.log("Looking for " + searchGameTypes);
-  console.log(searchGameTypes[0]);
-  console.log(searchGameTypes[1]);
-  console.log(searchGameTypes[2]);
-  console.log(searchGameTypes[3]);
-  console.log(searchGameTypes[4]);
   console.log("Filtering games to show now");
   var gameTypeTrue = [];
   for (let i = 0; gamesToFilter.length > i; i++) {
-    console.log(gamesToFilter[i].Type);
     if (gamesToFilter[i].Type === searchGameTypes[0])
       gameTypeTrue.push(gamesToFilter[i])
     if (gamesToFilter[i].Type === searchGameTypes[1])
@@ -181,14 +174,14 @@ function filterGames(gamesToFilter) {
 
 function searchResults(gameResults) {
   console.log("Getting games ready to display now");
-  var searchPlayerValue = document.getElementById('playerSlider').value;
+  var searchPlayerValue = parseInt(document.getElementById('playerSlider').value, 10);
   console.log(searchPlayerValue);
   resultsContainer.innerHTML = "";
   for (let i = 0; i < gameResults.length; i++) {
     var gameName = gameResults[i].Name;
     var gameType = gameResults[i].Type;
-    var gameMinPlayers = gameResults[i].Min;
-    var gameMaxPlayers = gameResults[i].Max;
+    var gameMinPlayers = parseInt(gameResults[i].Min, 10);
+    var gameMaxPlayers = parseInt(gameResults[i].Max, 10);
     var gameNotes = gameResults[i].Notes;
     if (searchPlayerValue >= gameMinPlayers) {
       if (searchPlayerValue <= gameMaxPlayers) {
@@ -208,8 +201,8 @@ function searchResults(gameResults) {
         gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
         gameNotesEle.innerHTML = gameNotes;
       }
-      else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
     }
+    // else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
   };
   console.log("Search complete");
 };
