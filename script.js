@@ -125,6 +125,49 @@ const gameTypesArr = ["Card Game", "Board Game", "Skill Game", "Leisure", "Drink
 var searchGameTypes = [];
 var gameTypeTrue = [];
 
+// gameTypesArr Index = 0 Card Game, 1 Board Game, 2 Skill Game, 3 Leisure, 4 Drinking Game
+
+// const gameTypesArr = [
+//   {
+//     id: cardGame,
+//     name: "Card Game",
+//     filter: "empty"
+//   },
+//   {
+//     id: boardGame,
+//     name: "Board Game",
+//     filter: "empty"
+//   },
+//   {
+//     id: skillGame,
+//     name: "Skill Game",
+//     filter: "empty"
+//   },
+//   {
+//     id: leisure,
+//     name: "Leisure",
+//     filter: "empty"
+//   },
+//   {
+//     id: drinkingGame,
+//     name: "Drinking Game",
+//     filter: "empty"
+//   }
+// ];
+
+// const searchGameTypes = [];
+// const gameTypeTrue = [];
+// const returnValue = array.filter((value, index, array) => {...}, thisArg);
+
+// const expensiveItems = [];
+
+// for (let i = 0 ; i < items.length; i++) {
+//   const item = items[i];
+//   if (item.price > 199) {
+//     expensiveItems.push(item);
+//   } 
+// }
+
 searchBtn.addEventListener("click", searchGames);
 refreshSearchBtn.addEventListener("click", refreshSearch);
 
@@ -142,8 +185,8 @@ function searchGames() {
 };
 
 function searchType() {
-  console.log("Confirming game type now");
   var searchGameTypes = [];
+  console.log("Confirming game type now");
   var checkboxes = document.getElementsByClassName('gameChoice');
   for (var checkbox of checkboxes) {
     if (checkbox.checked) {
@@ -151,10 +194,97 @@ function searchType() {
     };
   };
   if (searchGameTypes.length === 0) {
-    searchGameTypes.push(gameTypesArr);
+    searchGameTypes.push("Card Game", "Board Game", "Skill Game", "Leisure", "Drinking Game");
   };
   console.log("Looking for " + searchGameTypes);
 };
+
+function filterGames(gamesToFilter) {
+  console.log("Filtering games to show now");
+  var gameTypeTrue = [];
+  for (let i = 0; gamesToFilter.length > i; i++) {
+    if (gamesToFilter[i].Type == searchGameTypes[0])
+      gameTypeTrue.push(gamesToFilter[i])
+    if (gamesToFilter[i].Type == searchGameTypes[1])
+      gameTypeTrue.push(gamesToFilter[i])
+    if  (gamesToFilter[i].Type == searchGameTypes[2])
+      gameTypeTrue.push(gamesToFilter[i])
+    if  (gamesToFilter[i].Type == searchGameTypes[3])
+      gameTypeTrue.push(gamesToFilter[i])
+    if  (gamesToFilter[i].Type == searchGameTypes[4])
+      gameTypeTrue.push(gamesToFilter[i])
+  };
+  searchResults(gamesToFilter);
+};
+
+function searchResults(gameResults) {
+  console.log("Getting games ready to display now");
+  var searchPlayerValue = document.getElementById('playerSlider').value;
+  console.log(searchPlayerValue);
+  resultsContainer.innerHTML = "";
+  for (let i = 0; i < gameResults.length; i++) {
+    var gameName = gameResults[i].Name;
+    var gameType = gameResults[i].Type;
+    var gameMinPlayers = gameResults[i].Min;
+    var gameMaxPlayers = gameResults[i].Max;
+    var gameNotes = gameResults[i].Notes;
+    if (gameMaxPlayers >= searchPlayerValue <= gameMaxPlayers) {
+      let gameEle = document.createElement('div');
+      let gameNameEle = document.createElement('h3');
+      let gameTypeEle = document.createElement('p');
+      let gamePlayersEle = document.createElement('p');
+      let gameNotesEle = document.createElement('p');
+      resultsContainer.appendChild(gameEle);
+      gameEle.setAttribute('class', 'gameItem');
+      gameEle.appendChild(gameNameEle);
+      gameEle.appendChild(gameTypeEle);
+      gameEle.appendChild(gamePlayersEle);
+      gameEle.appendChild(gameNotesEle);
+      gameNameEle.innerHTML = gameName;
+      gameTypeEle.innerHTML = gameType;
+      gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
+      gameNotesEle.innerHTML = gameNotes;
+    }
+    else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
+  };
+  console.log("Search complete");
+};
+
+
+// old?
+
+// function searchType() {
+//   console.log("Confirming game type now");
+//   // var searchGameTypes = [];
+//   var checkboxes = document.getElementsByClassName('gameChoice');
+//   for (var checkbox of checkboxes) {
+//     if (checkbox.checked) {
+//       searchGameTypes.push(checkbox.name);
+//     };
+//   };
+//   if (searchGameTypes.length === 0) {
+//     searchGameTypes.push(gameTypesArr);
+//   };
+//   console.log("Looking for " + searchGameTypes);
+// };
+
+
+// ORIGINAL SEARCH TYPE FUNCTION
+
+// function searchType() {
+//   console.log("Confirming game type now");
+//   var searchGameTypes = [];
+//   var checkboxes = document.getElementsByClassName('gameChoice');
+//   for (var checkbox of checkboxes) {
+//     if (checkbox.checked) {
+//       searchGameTypes.push(checkbox.name);
+//     };
+//   };
+//   if (searchGameTypes.length === 0) {
+//     searchGameTypes.push(gameTypesArr);
+//   };
+//   console.log("Looking for " + searchGameTypes);
+// };
 
 // ORIGINAL FILTER FUNCTION
 
@@ -231,45 +361,62 @@ function searchType() {
 // var gameMinPlayers = "";
 // var gameMaxPlayers = "";
 
-function filterGames(searchedGames) {
-  console.log("Filtering games to show now");
-  var searchPlayerValue = document.getElementById('playerSlider').value;
-  console.log(searchPlayerValue);
-  resultsContainer.innerHTML = "";
-  for (let i = 0; i < searchedGames.length; i++) {
-    var gameName = searchedGames[i].Name;
-    var gameType = searchedGames[i].Type;
-    var gameMinPlayers = searchedGames[i].Min;
-    var gameMaxPlayers = searchedGames[i].Max;
-    var gameNotes = searchedGames[i].Notes;
-    function returnTrue() {
-      if (searchGameTypes.includes(gameType)) return true;
-    };
-    if (returnTrue()) {
-      if (searchPlayerValue >= gameMinPlayers) {
-        if (searchPlayerValue <= gameMaxPlayers) {
-          let gameEle = document.createElement('div');
-          let gameNameEle = document.createElement('h3');
-          let gameTypeEle = document.createElement('p');
-          let gamePlayersEle = document.createElement('p');
-          let gameNotesEle = document.createElement('p');
-          resultsContainer.appendChild(gameEle);
-          gameEle.setAttribute('class', 'gameItem');
-          gameEle.appendChild(gameNameEle);
-          gameEle.appendChild(gameTypeEle);
-          gameEle.appendChild(gamePlayersEle);
-          gameEle.appendChild(gameNotesEle);
-          gameNameEle.innerHTML = gameName;
-          gameTypeEle.innerHTML = gameType;
-          gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
-          gameNotesEle.innerHTML = gameNotes;          
-        }
-      }
-    }
-    else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
-  };
-  console.log("Search complete");
-};
+
+// function filterGames(searchedGames) {
+//   console.log("Filtering games to show now");
+//   var searchPlayerValue = document.getElementById('playerSlider').value;
+//   console.log(searchPlayerValue);
+//   resultsContainer.innerHTML = "";
+//   for (let i = 0; i < searchedGames.length; i++) {
+//     var gameName = searchedGames[i].Name;
+//     var gameType = searchedGames[i].Type;
+//     var gameMinPlayers = searchedGames[i].Min;
+//     var gameMaxPlayers = searchedGames[i].Max;
+//     var gameNotes = searchedGames[i].Notes;
+//     function returnTrue() {
+//       const gameTypeTrue = [];
+//       for (let x = 0; x < searchGameTypes.length; x++)
+//       const gameTypeTrue = searchedGames
+//       .filter(searchedGames => searchedGames.Type == searchGameTypes[x])
+    
+//     };
+//     if (returnTrue()) {
+//       if (searchPlayerValue >= gameMinPlayers) {
+//         if (searchPlayerValue <= gameMaxPlayers) {
+//           let gameEle = document.createElement('div');
+//           let gameNameEle = document.createElement('h3');
+//           let gameTypeEle = document.createElement('p');
+//           let gamePlayersEle = document.createElement('p');
+//           let gameNotesEle = document.createElement('p');
+//           resultsContainer.appendChild(gameEle);
+//           gameEle.setAttribute('class', 'gameItem');
+//           gameEle.appendChild(gameNameEle);
+//           gameEle.appendChild(gameTypeEle);
+//           gameEle.appendChild(gamePlayersEle);
+//           gameEle.appendChild(gameNotesEle);
+//           gameNameEle.innerHTML = gameName;
+//           gameTypeEle.innerHTML = gameType;
+//           gamePlayersEle.innerHTML = gameMinPlayers + "-" + gameMaxPlayers + " players";
+//           gameNotesEle.innerHTML = gameNotes;          
+//         }
+//       }
+//     }
+//     else resultsContainer.innerHTML = "Sorry, no matching games found. Please try searching again!";
+//   };
+//   console.log("Search complete");
+// };
+
+// const returnValue = array.filter((value, index, array) => {...}, thisArg);
+
+// const expensiveItems = [];
+
+// for (let i = 0 ; i < items.length; i++) {
+//   const item = items[i];
+//   if (item.price > 199) {
+//     expensiveItems.push(item);
+//   } 
+// }
+
 
 // function include(arr, obj) {
 //   for (var i = 0; i < arr.length; i++) {
@@ -318,7 +465,6 @@ function filterGames(searchedGames) {
 
 function refreshSearch() {
   resultsContainer.innerHTML = "";
-  var searchGameTypes = [];
   playerSlider.value = 4;
   playerNum.innerHTML = playerSlider.value;
   var checkboxes = document.getElementsByClassName('gameChoice');
